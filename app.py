@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 from datetime import datetime
-
 app = Flask(__name__)
-
 # Function to create/connect to the database
 def init_db():
     with sqlite3.connect("attendance.db") as conn:
@@ -15,12 +13,10 @@ def init_db():
                             status TEXT NOT NULL
                         )''')
         conn.commit()
-
 # Route to display the attendance page
 @app.route('/')
 def index():
     return render_template("index.html")
-
 # Route to record attendance
 @app.route('/mark_attendance', methods=['POST'])
 def mark_attendance():
@@ -36,7 +32,6 @@ def mark_attendance():
             conn.commit()
         
         return redirect(url_for('index'))
-
 # Route to view attendance records
 @app.route('/view_attendance')
 def view_attendance():
@@ -45,7 +40,6 @@ def view_attendance():
         cursor.execute("SELECT * FROM attendance")
         records = cursor.fetchall()
     return render_template("attendance_records.html", records=records)
-
 if __name__ == '__main__':
     init_db()  # Initialize the database when the app starts
     app.run(debug=True)
