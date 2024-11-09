@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Student Attendance</h1>
+
+    <h2>Mark Attendance</h2>
+    <form method="POST" action="/mark_attendance">
+        <input type="text" name="student_name" placeholder="Student Name" required>
+        <select name="status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        <button type="submit">Mark Attendance</button>
+    </form>
+
+    <br>
+    <a href="/view_attendance">View Attendance Records</a>
+</body>
+</html>
